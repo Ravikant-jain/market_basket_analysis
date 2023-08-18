@@ -39,3 +39,27 @@ def cegg(mss,ss): # This returns a boolean list generated with the condition: if
         else:
             rt.append(False)
     return rt
+
+
+def kount(transactions,lis): # This returns the count of the element in all the transactions
+    
+    nlis=[0 for i in range(len(lis))]
+    for tr in transactions:
+        tl=cegg(tr.items,lis)
+        for indexx,ind in enumerate(tl):
+            if ind:
+                # print('ind: ',indexx)
+                nlis[indexx] +=1
+    return nlis
+
+def elip(ms,wholelist,clist): # This returns the list with elements that surpasses the minimum support
+    for indx , i in enumerate(clist):
+        # print(f'indx: {indx} : i ki value: {i} :item {wholelist[indx]}')
+        if i < ms:
+            # print(f'Item {wholelist[indx]} is removed from the list as it has count {i}. ')
+            print(f'{wholelist[indx]} with count {i} is removed. ')
+            wholelist[indx]='*'
+    while '*' in wholelist:
+        wholelist.remove('*')
+    print(f'Updated list is {wholelist}\n ')
+    return wholelist
