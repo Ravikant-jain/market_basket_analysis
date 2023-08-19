@@ -63,3 +63,52 @@ def elip(ms,wholelist,clist): # This returns the list with elements that surpass
         wholelist.remove('*')
     print(f'Updated list is {wholelist}\n ')
     return wholelist
+
+
+def find_common_subsets(main_list, n): # This function returns mega set by combining 2 smaller sets and have atleast one element common
+    common_subsets = []
+    
+    for subset1, subset2 in crazy(main_list, 2):
+        # print(subset1, subset2)
+        common_elements = set(subset1) & set(subset2)
+        if len(common_elements) > 0:
+            combined_subset = sorted(set(subset1) | set(subset2))
+            if len(combined_subset) == n and combined_subset not in common_subsets :
+                common_subsets.append(combined_subset)
+    if len(common_subsets)==0:
+        return None
+    else:
+        return common_subsets
+
+def dekhao(fino,ms,transactions): # This function prints the associations rules by taking final list as input.
+    print(f'Association Rules are:\n')
+    for hid in fino:
+        nfino=[]
+        numerator=[]
+        rhs=[]
+        Lconfv=[]
+        Rconfv=[]
+        for i2 in hid:
+            nfino.append(i2)
+            numerator.append(ms)
+        lhs=crazy(nfino,2)
+
+        for i3 in lhs:
+            for i4 in hid:
+                if i4 in i3:
+                    pass
+                else:
+                    rhs.append([i4])
+
+        Ldenominator=kount(transactions,lhs)
+        Rdenominator=kount(transactions,rhs)
+
+        for i in range(len(hid)):
+            Lconfv.append((round(((numerator[i]/Ldenominator[i])*100),2)))
+            Rconfv.append((round(((numerator[i]/Rdenominator[i])*100),2)))
+
+        for indxx,i5 in enumerate(lhs):
+            print(f' {i5[0]} and {i5[1]} supports {rhs[indxx][0]} with confidence level {Lconfv[indxx]} ')
+
+        for indxx,i5 in enumerate(lhs):
+            print(f' {rhs[indxx][0]} supports {i5[0]} and {i5[1]} with confidence level {Rconfv[indxx]} ')
