@@ -112,3 +112,27 @@ def dekhao(fino,ms,transactions): # This function prints the associations rules 
 
         for indxx,i5 in enumerate(lhs):
             print(f' {rhs[indxx][0]} supports {i5[0]} and {i5[1]} with confidence level {Rconfv[indxx]} ')
+            
+def showtime(alle,ms,transactions):
+    sw=True
+    n=0
+    primealle=alle.copy()
+    while sw:
+        n=n+1
+        if n==1:
+            primealle=elip(ms,primealle,kount(transactions,crazy(primealle,n)))
+            n=n+1
+        if n==2:
+            primealle=elip(ms,crazy(primealle,n),kount(transactions,crazy(primealle,n)))
+            n=n+1
+        if n>=3 and find_common_subsets(primealle,n)is not None:
+
+            # print('-->',find_common_subsets(primealle,n))
+            primealle=elip(ms,find_common_subsets(primealle,n),kount(transactions,find_common_subsets(primealle,n)))
+        # sw=False
+        n=n+1
+        # print('this is ',n)
+    # print('Ended')
+        if find_common_subsets(primealle,n)is None:
+            sw=False
+            dekhao(primealle,ms,transactions)

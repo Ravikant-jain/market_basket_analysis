@@ -40,4 +40,6 @@ with open(file, 'r',encoding='utf-8-sig') as csvf:
 # ms=math.ceil((msp/100)*len(transactions)) this is the formula for calculation for minimum support , but we are hard coding it to 2 for now
 ms=2
 
-print(f"First transaction: {transactions[0].items} \nall items: {alle} \nmin support: {ms} ")
+# print(f"First transaction: {transactions[0].items} \nall items: {alle} \nmin support: {ms} ")
+
+x = fn.showtime(alle,ms,transactions)
