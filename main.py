@@ -2,8 +2,7 @@ import csv
 import math
 import numpy as np
 
-import functions as fn
-from functions import trans
+from fun_mba import *
 
 msp=50#these are hard coded values for now 
 con=70
@@ -23,9 +22,7 @@ with open(file, 'r',encoding='utf-8-sig') as csvf:
         ogrw=[]
         for indx in rw:
             ogrw.append(int(indx))
-        # rw=np.array(row[1])
 
-        # print(type(ogrw[1]))
         x=trans(row[0],ogrw)
         for ele in row[1]:
             try:
@@ -42,4 +39,4 @@ ms=2
 
 # print(f"First transaction: {transactions[0].items} \nall items: {alle} \nmin support: {ms} ")
 
-x = fn.showtime(alle,ms,transactions)
+x = showtime(alle,ms,transactions)#this function is created in the fun_mba library

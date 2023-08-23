@@ -1,3 +1,5 @@
+#fun_mba stands for Functions for Market Basket analysis
+
 class trans:
     def __init__(self,amt,items):
         self.amt = amt
